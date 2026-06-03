@@ -391,13 +391,16 @@ total_ratings = len(ratings_df) if not ratings_df.empty else 100_000
 # ─────────────────────────────────────────────────────────────────────────────
 available = []
 api_online = False
+# On Streamlit Cloud the FastAPI backend isn't running — use demo mode
+DEMO_MODE = False
 try:
-    hc = requests.get(f"{API_BASE_URL}/", timeout=4)
+    hc = requests.get(f"{API_BASE_URL}/", timeout=3)
     if hc.status_code == 200:
         available = hc.json().get("available_models", [])
         api_online = True
 except Exception:
-    pass
+    DEMO_MODE = True   # Cloud deployment — show demo data gracefully
+    available = ["ncf", "svd", "knn"]  # show as if loaded for UI purposes
 
 # ─────────────────────────────────────────────────────────────────────────────
 #  SIDEBAR
@@ -473,6 +476,13 @@ with st.sidebar:
         <div class="nav-status">
           <div class="dot"></div>
           <span style="color:#d1dae6;">{model_label} · Active</span>
+        </div>
+        """, unsafe_allow_html=True)
+    elif DEMO_MODE:
+        st.markdown(f"""
+        <div class="nav-status">
+          <div style="width:8px;height:8px;border-radius:50%;background:#f0a844;box-shadow:0 0 8px rgba(240,168,68,0.6);flex-shrink:0;"></div>
+          <span style="color:#d1dae6;">{model_label} · Demo Mode</span>
         </div>
         """, unsafe_allow_html=True)
     else:

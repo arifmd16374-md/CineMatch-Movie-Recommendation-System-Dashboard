@@ -1,0 +1,5 @@
+[tool.vercel]
+# This project is a Streamlit app — deploy on Streamlit Community Cloud
+# https://share.streamlit.io
+# Not compatible with Vercel serverless deployment
+ignored = true
