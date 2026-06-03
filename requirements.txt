@@ -1,11 +1,11 @@
-# Core ML — compatible with Python 3.11 on Streamlit Cloud
-scikit-surprise==1.1.3
+# Core ML — no C-extension builds required, works on all cloud platforms
 torch==2.2.2
 torchvision==0.17.2
 
 # Data & EDA
 numpy==1.26.4
 pandas==2.2.2
+scipy==1.13.0
 matplotlib==3.8.4
 seaborn==0.13.2
 scikit-learn==1.4.2
