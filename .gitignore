@@ -14,3 +14,9 @@ logs/
 *.log
 .DS_Store
 .kiro/
+
+# Node / frontend
+frontend/node_modules/
+frontend/.next/cache/
+frontend/.next/static/webpack/
+frontend/.next/trace
