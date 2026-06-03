@@ -1,8 +1,7 @@
-# Core ML — no C-extension builds required, works on all cloud platforms
-torch==2.2.2
-torchvision==0.17.2
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.2.2+cpu
+torchvision==0.17.2+cpu
 
-# Data & EDA
 numpy==1.26.4
 pandas==2.2.2
 scipy==1.13.0
@@ -10,17 +9,14 @@ matplotlib==3.8.4
 seaborn==0.13.2
 scikit-learn==1.4.2
 
-# API
 fastapi==0.111.0
 uvicorn[standard]==0.29.0
 pydantic==2.7.1
 
-# UI
 streamlit==1.35.0
 requests==2.32.2
 plotly==5.22.0
 
-# Utilities
 pyyaml==6.0.1
 joblib==1.4.2
 tqdm==4.66.4

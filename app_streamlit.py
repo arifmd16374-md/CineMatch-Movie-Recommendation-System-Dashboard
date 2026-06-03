@@ -523,10 +523,14 @@ if page == "Dashboard":
 
     # ── Retrain logic ─────────────────────────────────────────────────────────
     if retrain_clicked:
-        import subprocess, sys, os, time
+        import subprocess, sys, os, time, tempfile
 
-        log_path = "logs/retrain_live.log"
-        os.makedirs("logs", exist_ok=True)
+        # Use temp dir on cloud (read-only filesystem), logs/ locally
+        try:
+            os.makedirs("logs", exist_ok=True)
+            log_path = "logs/retrain_live.log"
+        except OSError:
+            log_path = os.path.join(tempfile.gettempdir(), "retrain_live.log")
 
         # Kill any previous retrain process stored in session
         old_proc = st.session_state.get("retrain_proc")
