@@ -1,0 +1,60 @@
+data:
+  dataset: ml-100k
+  data_dir: data/
+  models_dir: models/
+  output_dir: outputs/
+  test_ratio: 0.2
+  random_seed: 42
+
+svd:
+  param_grid:
+    n_factors: [100]
+    n_epochs: [20]
+    lr_all: [0.005]
+    reg_all: [0.02]
+
+  # Full grid search (used only in train_pipeline.py directly)
+  full_param_grid:
+    n_factors: [50, 100, 150]
+    n_epochs: [20, 30]
+    lr_all: [0.005, 0.01]
+    reg_all: [0.02, 0.1]
+
+knn:
+  param_grid:
+    k: [40]
+    sim_options:
+      name: [pearson]
+      user_based: [true]
+
+  # Full grid search (used only in train_pipeline.py directly)
+  full_param_grid:
+    k: [20, 40, 60]
+    sim_options:
+      name: [cosine, pearson, msd]
+      user_based: [true, false]
+
+ncf:
+  embedding_dim: 64
+  hidden_layers: [256, 128, 64]
+  dropout_rate: 0.3
+  learning_rate: 0.001
+  batch_size: 256
+  epochs: 15
+  early_stopping_patience: 3
+  early_stopping_delta: 0.001
+
+evaluation:
+  k_values: [5, 10, 20]
+  relevance_threshold: 4.0
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  top_n_default: 10
+
+logging:
+  level: INFO
+  log_dir: logs/
+  max_bytes: 10485760
+  backup_count: 5

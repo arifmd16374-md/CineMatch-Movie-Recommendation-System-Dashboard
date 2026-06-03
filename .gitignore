@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.venv311/
+venv/
+.env
+data/ml-100k/
+models/*.pkl
+models/*.pth
+models/dataset_meta.json
+outputs/
+logs/
+*.log
+.DS_Store
+.kiro/
